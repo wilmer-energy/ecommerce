@@ -1,4 +1,5 @@
-let itemsEnCarro = []
+
+let fragmento =""
 let divVacio = document.querySelector(".carroVacio")
 let divCarrito = document.querySelector(".articulosAniadidos")
 let c3 = 0
@@ -53,8 +54,13 @@ let categoria = [
     cantidad: 2,
   }
 ]
+/*
+let dataGet=window.localStorage.getItem("arreglo")
+let itemsEnCarro = JSON.parse(dataGet)
+imprimirArray(itemsEnCarro)
+*/
 //Crear el array en el HTML, y crearle el estilado en css
-let fragmento = ""
+
 let c = 0
 let categoriaLi = document.querySelector(".categoria")
 categoria.forEach(elemento => {
@@ -128,7 +134,7 @@ function carrito(id) {
   //crear el array
   let aux = {
     id: id,
-    idp:id,
+    idp: id,
     name: items[id].name,
     price: items[id].price,
     image: items[id].image,
@@ -141,34 +147,7 @@ function carrito(id) {
   }
   itemsEnCarro.push(aux)
   itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
-  /*
-    //buscar el item en el arreglo
-    let a = false
-    let p = 0
-    if (itemsEnCarro[0]!== undefined) {//si hay algo en el carro
   
-      for (i = 0; i <=itemsEnCarro.length - 1; i++) {//buscar si el id ya existe
-      
-        if (itemsEnCarro[i].id === id) {
-          a = true
-          p = i
-        }
-      }
-      if (a === true) {
-        itemsEnCarro[p].cantidad++//añadir una cantidad al que ya esta creado
-        imprimirArray(itemsEnCarro)//imprimir el array
-      } else {
-        itemsEnCarro.push(aux)//crear el espacio
-        itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
-        imprimirArray(itemsEnCarro)//imprimir
-      }
-  
-    }else{//si no hay nada el el carro
-    itemsEnCarro.push(aux)
-    itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
-    }
-  
-  */
 
   //eliminar la imagen de carrito vacio
   if (vacio === false) {
@@ -200,30 +179,27 @@ function Eliminar(id) {
 
 
 function imprimirArray(arreglo) {
-  //Si un articulo se repite -> mirar las posiciones en las que se repite, eliminar las ultimas y aumentar la cantidad de la primera
-//
-
+//Eliminar los repetidos
   let a = 0
   let pos = []
-let auxItems=[]
   for (i = 0; i <= arreglo.length - 1; i++) {
-    a=0
-    pos=[]
+    a = 0
+    pos = []
     for (j = 0; j <= arreglo.length - 1; j++) {
       if (arreglo[i].idp === arreglo[j].idp) {//es id es la posicion
-       a++
-       if(a>=2){pos.push(j)}
+        a++
+        if (a >= 2) { pos.push(j) }
       }
     }
     //eliminar de atras
-    for(k=pos.length-1;k>=0;k--){
-      
-      arreglo.splice(pos[k],1)
+    for (k = pos.length - 1; k >= 0; k--) {
+
+      arreglo.splice(pos[k], 1)
       arreglo[i].cantidad++
     }
   }
-  
-  
+
+
   fragmento = ""
   arreglo.forEach(elements => {
     fragmento += `
@@ -238,4 +214,8 @@ let auxItems=[]
     </div>`
   })
   divCarrito.innerHTML = fragmento
+
+  //Una vez impreso, que se almacene el array
+let data=JSON.stringify(arreglo)
+window.localStorage.setItem("arreglo",data)
 }
