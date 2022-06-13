@@ -2,7 +2,7 @@ let itemsEnCarro = []
 let divVacio = document.querySelector(".carroVacio")
 let divCarrito = document.querySelector(".articulosAniadidos")
 let c3 = 0
-let vacio=false
+let vacio = false
 const items = [
   {
     id: 1,
@@ -107,10 +107,10 @@ let divCarro = document.querySelector(".carroInactivo")
 
 carro.addEventListener("click", () => {
   divCarro.classList.add("carrito")
-  if (itemsEnCarro[0] !== undefined && vacio===false) {
+  if (itemsEnCarro[0] !== undefined && vacio === false) {
     //desaparecer el div
     divVacio.classList.add("carroVacioNone")
-    vacio=true
+    vacio = true
   }
 })
 
@@ -123,43 +123,119 @@ x.addEventListener("click", () => {
 //añadir productos al carro
 
 
-function carrito(id) {  
-   console.log(items[id].name)
-   //crear el array
-   let aux={
+function carrito(id) {
+  console.log(items[id].name)
+  //crear el array
+  let aux = {
     id: id,
+    idp:id,
     name: items[id].name,
     price: items[id].price,
     image: items[id].image,
     category: items[id].category,
     quantity: items[id].quantity,
-    cantidad: 1
-   }
-   itemsEnCarro.push(aux)
+    cantidad: 1,
+    stock: function (c, q) {
+      if (c > q) { window.alert("No se puede añadir mas") }
+    }
+  }
+  itemsEnCarro.push(aux)
+  itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
+  /*
+    //buscar el item en el arreglo
+    let a = false
+    let p = 0
+    if (itemsEnCarro[0]!== undefined) {//si hay algo en el carro
+  
+      for (i = 0; i <=itemsEnCarro.length - 1; i++) {//buscar si el id ya existe
+      
+        if (itemsEnCarro[i].id === id) {
+          a = true
+          p = i
+        }
+      }
+      if (a === true) {
+        itemsEnCarro[p].cantidad++//añadir una cantidad al que ya esta creado
+        imprimirArray(itemsEnCarro)//imprimir el array
+      } else {
+        itemsEnCarro.push(aux)//crear el espacio
+        itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
+        imprimirArray(itemsEnCarro)//imprimir
+      }
+  
+    }else{//si no hay nada el el carro
+    itemsEnCarro.push(aux)
+    itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
+    }
+  
+  */
 
-
-   //eliminar la imagen de carrito vacio
-   if(vacio===false){
+  //eliminar la imagen de carrito vacio
+  if (vacio === false) {
     divVacio.classList.add("carroVacioNone")
-    vacio=true
-   }
-   
+    vacio = true
+  }
+
+  //imprimir el array
+  imprimirArray(itemsEnCarro)
+
+}
+function clickMasMenos(id, boo) {
+  console.log(itemsEnCarro)
+
+  //modificar en el array la cantidad
+  if (boo === true) {
+    itemsEnCarro[id].cantidad++
+  } else { itemsEnCarro[id].cantidad-- }
 
 
-   //imprimir el array
-   fragmento=""
-   itemsEnCarro.forEach(elements=>{
+  //imprimir el array de nuevo
+  imprimirArray(itemsEnCarro)
+}
+function Eliminar(id) {
+  //modificar e imprimir
+  itemsEnCarro.splice(id, 1)
+  imprimirArray(itemsEnCarro)
+}
+
+
+function imprimirArray(arreglo) {
+  //Si un articulo se repite -> mirar las posiciones en las que se repite, eliminar las ultimas y aumentar la cantidad de la primera
+//
+
+  let a = 0
+  let pos = []
+let auxItems=[]
+  for (i = 0; i <= arreglo.length - 1; i++) {
+    a=0
+    pos=[]
+    for (j = 0; j <= arreglo.length - 1; j++) {
+      if (arreglo[i].idp === arreglo[j].idp) {//es id es la posicion
+       a++
+       if(a>=2){pos.push(j)}
+      }
+    }
+    //eliminar de atras
+    for(k=pos.length-1;k>=0;k--){
+      
+      arreglo.splice(pos[k],1)
+      arreglo[i].cantidad++
+    }
+  }
+  
+  
+  fragmento = ""
+  arreglo.forEach(elements => {
     fragmento += `
     <div class="tarjetaProducto">
     <img src="${elements.image}" alt="">
     <div>
         <h3>${elements.name}</h3>
         <span class="gris">Stock: ${elements.quantity} |</span><span class="rojo"> $${elements.price}</span><br>
-        <span class="rojo texto-medio subtotal${id}">Subtotal: $${elements.cantidad * elements.price}</span>
-        <div><span class="botonUnidades">-</span><span class="texto-medio unidades${id}">${elements.cantidad} units</span><span class="botonUnidades">+</span><i>E</i></div>
+        <span class="rojo texto-medio">Subtotal: $${elements.cantidad * elements.price}</span>
+        <div><span class="botonUnidades" onclick="clickMasMenos(${elements.id},false)">-</span><span class="texto-medio">${elements.cantidad} units</span><span class="botonUnidades" onclick="clickMasMenos(${elements.id},true)">+</span><i onclick="Eliminar(${elements.id})">E</i></div>
     </div>
     </div>`
-   })
-    divCarrito.innerHTML=fragmento
-
+  })
+  divCarrito.innerHTML = fragmento
 }
