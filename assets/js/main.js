@@ -4,6 +4,7 @@ let divVacio = document.querySelector(".carroVacio")
 let divCarrito = document.querySelector(".articulosAniadidos")
 let c3 = 0
 let vacio = false
+itemsEnCarro=[]
 const items = [
   {
     id: 1,
@@ -54,11 +55,7 @@ let categoria = [
     cantidad: 2,
   }
 ]
-/*
-let dataGet=window.localStorage.getItem("arreglo")
-let itemsEnCarro = JSON.parse(dataGet)
-imprimirArray(itemsEnCarro)
-*/
+
 //Crear el array en el HTML, y crearle el estilado en css
 
 let c = 0
@@ -215,7 +212,4 @@ function imprimirArray(arreglo) {
   })
   divCarrito.innerHTML = fragmento
 
-  //Una vez impreso, que se almacene el array
-let data=JSON.stringify(arreglo)
-window.localStorage.setItem("arreglo",data)
 }
