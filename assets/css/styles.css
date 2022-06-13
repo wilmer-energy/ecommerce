@@ -1,0 +1,287 @@
+/*-------------GOOGLE FONT----------------*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+
+:root{
+/*COLORES:*/
+    --first-color: hsl(354, 78%, 60%);
+    --button-color: hsl(0, 0%, 17%);
+    --button-color-alt: hsl(0, 0%, 21%);
+    --card-color: hsl(0, 0%, 90%);
+    --title-color: hsl(0, 0%, 15%);
+    --text-color: hsl(0, 0%, 35%);
+    --text-color-light: hsl(0, 0%, 55%);
+    --body-color: hsl(206, 4%, 97%);
+    --container-color: #fff;
+    --border-color: hsl(0, 0%, 94%);
+    --tamanio-texto-medio:20px;
+
+
+   /*COLORES DARK MODE:
+    --first-color: hsl(182, 53%, 74%);
+    --button-color: hsl(246, 16%, 12%);
+    --button-color-alt: hsl(0, 0%, 28%);
+    --card-color: hsla(246, 16%, 5%, .5);
+    --title-color: hsl(0, 0%, 95%);
+    --text-color: hsl(0, 0%, 75%);
+    --body-color: hsl(249, 19%, 14%);
+    --container-color: hsl(246, 16%, 12%);
+    --border-color: hsl(0, 0%, 20%);*/ 
+
+   
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--body-color);
+}
+
+/*ESTILO TARJETA*/
+.productos{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.productos>div{
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--container-color);
+    width: 250px;
+    height: 330px;
+    position: relative;
+    left: 11vw;
+    
+}
+.productos>div:hover img{
+position: relative;
+top: -5px;
+}
+.imagen>img{
+    width: 200px;
+}
+.imagen{
+    background-color:var(--card-color);
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.productos>div>button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    position: absolute;
+   top: calc(230px - 25px);
+   right: 20px;
+   border: 0px solid white;
+   box-shadow: 2px 2px 10px var(--card-color);
+   font-size: 25px;
+}
+.productos>div>button:hover{
+    background-color: var(--first-color);
+    color: var(--body-color);
+}
+.texto-medio{
+    color: var(--title-color);
+    font-size: 20px;
+}
+.texto-bajo{
+    color: var(--text-color-light);
+}
+
+/*ESTILO DE LA CATEGORIA-------------------------------------------*/
+
+.categoria{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    
+}
+.categoria>li{
+    margin-left: 20px;
+}
+.categoria>li>h3{
+    color: var(--text-color);
+    font-size: var(--tamanio-texto-medio);
+    font-weight: bold;
+}
+.categoria>li>h3:hover{
+cursor:pointer;
+text-decoration: underline;
+}
+
+.categoria>li>span{
+    color: var(--text-color);
+    display: inline-block;
+}
+
+/*BARRA NAVEGACION--------------*/
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    background-color: var(--container-color);
+    z-index: 1;
+    width: 100vw;
+    top: 0;
+}
+nav>ul{
+display: flex;
+flex-direction: row;
+margin-left: 50px;
+margin-right: 50px;
+margin-top: 20px;
+margin-bottom: 20px;
+}
+nav>ul a{
+    color: var(--title-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: var(--tamanio-texto-medio);
+    margin-left: 10px;
+}
+nav>ul a:hover{
+    color: var(--first-color);
+}
+nav>ul li{
+margin-left: 10px;
+list-style: none;
+}
+/*CARRITO--------------------------------*/
+.carroInactivo{
+    display: none;
+    position: relative;
+}
+.carroInactivo>h2{
+    margin-left:40px;
+    margin-bottom: 40px;
+}
+.carrito{
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    z-index: 2;
+    top: 0;
+    background-color: var(--container-color);
+    display: inline-block;
+    
+}
+
+.carrito img{
+    width: 30vw;
+    padding: 5px;
+    border-radius: 8px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+
+/*contenido productos----------*/
+.contenido{
+    padding-bottom: 25vh;
+}
+/*Carrito*/
+.carroVacioNone{
+    display: none;
+}
+.carroVacio{
+    margin-left: 40px;
+    
+}
+.carroVacio>img{
+    width: 30vw;
+}
+.articulosAniadidos{
+    display: flex;
+    flex-direction: column;
+}
+.tarjetaProducto{
+    display: flex;
+    flex-direction: row;
+}
+.articulosAniadidos img{
+width: 80px;    
+}
+.articulosAniadidos>div>div>div{
+   width: 18vw;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between; 
+   margin-right: 4vw;
+}
+.gris{
+    color: var(--text-color);
+}
+.rojo{
+    color: var(--first-color);
+}
+.botonUnidades{
+    display: flex;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid rgb(193, 192, 192);
+}
+.botonUnidades:hover{
+cursor: pointer;
+}
+
+.articulosAniadidos i{
+    margin-left: 50px;
+    
+}
+#x{
+    font-size: 30px;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    margin: 20px;
+}
+#x:hover{
+    cursor: pointer;
+}
+/*FOOTER------------------------------------------*/
+footer{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--card-color);
+    justify-content: space-evenly;
+}
+footer h3{
+    color: var(--text-color);
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+footer ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+footer>ul a{
+color: var(--text-color-light);
+text-decoration: none;
+margin-bottom: 10px;
+}
