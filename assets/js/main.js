@@ -2,6 +2,7 @@ let itemsEnCarro = []
 let divVacio = document.querySelector(".carroVacio")
 let divCarrito = document.querySelector(".articulosAniadidos")
 let c3 = 0
+let vacio=false
 const items = [
   {
     id: 1,
@@ -106,9 +107,10 @@ let divCarro = document.querySelector(".carroInactivo")
 
 carro.addEventListener("click", () => {
   divCarro.classList.add("carrito")
-  if (itemsEnCarro[0] !== undefined) {
+  if (itemsEnCarro[0] !== undefined && vacio===false) {
     //desaparecer el div
     divVacio.classList.add("carroVacioNone")
+    vacio=true
   }
 })
 
@@ -122,36 +124,42 @@ x.addEventListener("click", () => {
 
 
 function carrito(id) {  
-    let aux = {
-    ids:id,
+   console.log(items[id].name)
+   //crear el array
+   let aux={
+    id: id,
     name: items[id].name,
-    quantity: items[id].quantity,
     price: items[id].price,
     image: items[id].image,
+    category: items[id].category,
+    quantity: items[id].quantity,
     cantidad: 1
-  }
+   }
+   itemsEnCarro.push(aux)
 
-  itemsEnCarro.push(aux)
-  console.log(itemsEnCarro)
 
-  fragmento = ""
+   //eliminar la imagen de carrito vacio
+   if(vacio===false){
+    divVacio.classList.add("carroVacioNone")
+    vacio=true
+   }
+   
 
-  //crear tarjetas de productos añadidos
 
-    fragmento = `
+   //imprimir el array
+   fragmento=""
+   itemsEnCarro.forEach(elements=>{
+    fragmento += `
     <div class="tarjetaProducto">
-    <img src="${aux.image}" alt="">
+    <img src="${elements.image}" alt="">
     <div>
-        <h3>${aux.name}</h3>
-        <span class="gris">Stock: ${aux.quantity} |</span><span class="rojo"> $${aux.price}</span><br>
-        <span class="rojo texto-medio subtotal${id}">Subtotal: $${aux.cantidad * aux.price}</span>
-        <div><span class="botonUnidades">-</span><span class="texto-medio unidades${id}">${aux.cantidad} units</span><span class="botonUnidades">+</span><i>E</i></div>
+        <h3>${elements.name}</h3>
+        <span class="gris">Stock: ${elements.quantity} |</span><span class="rojo"> $${elements.price}</span><br>
+        <span class="rojo texto-medio subtotal${id}">Subtotal: $${elements.cantidad * elements.price}</span>
+        <div><span class="botonUnidades">-</span><span class="texto-medio unidades${id}">${elements.cantidad} units</span><span class="botonUnidades">+</span><i>E</i></div>
     </div>
     </div>`
-  
-  divCarrito.innerHTML = divCarrito.innerHTML+fragmento
-}//fin if
-  
-  
+   })
+    divCarrito.innerHTML=fragmento
 
-
+}
