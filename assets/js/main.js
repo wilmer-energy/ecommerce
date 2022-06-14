@@ -150,8 +150,6 @@ x.addEventListener("click", () => {
 
 function carrito(id) {
   
-    console.log("paso por aqui")
-    console.log(items[id].name)
     //crear el array
     let aux = {
       id: id,
@@ -163,9 +161,28 @@ function carrito(id) {
       quantity: items[id].quantity,
       cantidad: 1,
     }
-    
     itemsEnCarro.push(aux)
     itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
+    let a = 0
+    let pos = []
+    for (i = 0; i <= itemsEnCarro.length - 1; i++) {
+      a = 0
+      pos = []
+      for (j = 0; j <= itemsEnCarro.length - 1; j++) {
+        if (itemsEnCarro[i].idp === itemsEnCarro[j].idp) {//es id es la posicion
+          a++
+          if (a >= 2) { pos.push(j) }
+        }
+      }
+      //eliminar de atras
+      for (k = pos.length - 1; k >= 0; k--) {
+  
+        itemsEnCarro.splice(pos[k], 1)
+        itemsEnCarro[i].cantidad++
+      }
+    }
+  
+    
 
     //condicional para primer caso
      //eliminar la imagen de carrito vacio
@@ -175,14 +192,13 @@ function carrito(id) {
           }
         
           //imprimir el array
+      
           imprimirArray(itemsEnCarro)
   
   
    
   }
  
-
-
 function clickMasMenos(id, boo) {
   //modificar en el array la cantidad
     if (boo === true) {
@@ -216,24 +232,7 @@ function Eliminar(id) {
 
 function imprimirArray(arreglo) {
   //Eliminar los repetidos
-  let a = 0
-  let pos = []
-  for (i = 0; i <= arreglo.length - 1; i++) {
-    a = 0
-    pos = []
-    for (j = 0; j <= arreglo.length - 1; j++) {
-      if (arreglo[i].idp === arreglo[j].idp) {//es id es la posicion
-        a++
-        if (a >= 2) { pos.push(j) }
-      }
-    }
-    //eliminar de atras
-    for (k = pos.length - 1; k >= 0; k--) {
 
-      arreglo.splice(pos[k], 1)
-      arreglo[i].cantidad++
-    }
-  }
 
 
   fragmento = ""
