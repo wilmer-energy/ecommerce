@@ -4,7 +4,10 @@ let divVacio = document.querySelector(".carroVacio")
 let divCarrito = document.querySelector(".articulosAniadidos")
 let c3 = 0
 let vacio = false
-itemsEnCarro=[]
+let itemsEnCarro=[]
+let total=[]
+
+let bolsita=document.getElementById("articulosEnCarro")
 const items = [
   {
     id: 1,
@@ -55,6 +58,13 @@ let categoria = [
     cantidad: 2,
   }
 ]
+let descarga=JSON.parse(window.localStorage.getItem("arreglo"))
+if(descarga!==null){
+  itemsEnCarro=descarga
+  bolsita.textContent=itemsEnCarro.length
+}
+
+//porque tambien me imprime en el grande??
 
 //Crear el array en el HTML, y crearle el estilado en css
 
@@ -109,11 +119,16 @@ let carro = document.getElementById("carro")
 let divCarro = document.querySelector(".carroInactivo")
 
 carro.addEventListener("click", () => {
+  
   divCarro.classList.add("carrito")
   if (itemsEnCarro[0] !== undefined && vacio === false) {
     //desaparecer el div
     divVacio.classList.add("carroVacioNone")
     vacio = true
+    if(itemsEnCarro!==null){
+      imprimirArray(itemsEnCarro)//??
+    }
+    
   }
 })
 
@@ -170,8 +185,18 @@ function clickMasMenos(id, boo) {
 }
 function Eliminar(id) {
   //modificar e imprimir
+  let posItem=itemsEnCarro[id].idp
   itemsEnCarro.splice(id, 1)
+  //si se elimina, todos los id cambian
+  for(i=id;i<=itemsEnCarro.length-1;i++){
+    itemsEnCarro[i].id--
+  }
   imprimirArray(itemsEnCarro)
+  //si el array esta vacio, imprimir que el carro esta vacio
+  if(itemsEnCarro[0]===undefined){
+    divVacio.classList.remove("carroVacioNone")
+    vacio=false
+  }
 }
 
 
@@ -211,5 +236,9 @@ function imprimirArray(arreglo) {
     </div>`
   })
   divCarrito.innerHTML = fragmento
+//almacenar el array
+let subir=JSON.stringify(arreglo)
+window.localStorage.setItem("arreglo",subir)
 
+bolsita.textContent=itemsEnCarro.length
 }
