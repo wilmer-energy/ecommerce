@@ -189,7 +189,7 @@ list-style: none;
 /*CARRITO--------------------------------*/
 .carroInactivo{
     display: none;
-    
+    width: 50vw;
     
 }
 .carroInactivo>h2{
