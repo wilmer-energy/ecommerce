@@ -244,7 +244,7 @@ function imprimirArray(arreglo) {
         <h3>${elements.name}</h3>
         <span class="gris">Stock: ${elements.quantity} |</span><span class="rojo"> $${elements.price}</span><br>
         <span class="rojo texto-medio">Subtotal: $${elements.cantidad * elements.price}</span>
-        <div><span class="botonUnidades" onclick="clickMasMenos(${elements.id},false)">-</span><span class="texto-medio">${elements.cantidad} units</span><span class="botonUnidades" onclick="clickMasMenos(${elements.id},true)">+</span><i onclick="Eliminar(${elements.id})">E</i></div>
+        <div><span class="botonUnidades" onclick="clickMasMenos(${elements.id},false)">-</span><span class="texto-medio">${elements.cantidad} units</span><span class="botonUnidades" onclick="clickMasMenos(${elements.id},true)">+</span><i onclick="Eliminar(${elements.id})"><img src="./assets/images/basura.png" alt=""></i></div>
     </div>
     </div>`
   })

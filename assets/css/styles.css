@@ -270,9 +270,14 @@ width: 80px;
 cursor: pointer;
 }
 
-.articulosAniadidos i{
+.articulosAniadidos i>img{
     margin-left: 50px;
+    height: 35px;
+    width: 60px;
     
+}
+.articulosAniadidos i>img:hover{
+    cursor: pointer;
 }
 #x{
     font-size: 30px;
