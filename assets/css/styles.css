@@ -235,7 +235,7 @@ list-style: none;
     display: flex;
     position: relative;
     flex-direction: column;
-    overflow-y: scroll;
+    
 }
 .tarjetaProducto{
     display: flex;
