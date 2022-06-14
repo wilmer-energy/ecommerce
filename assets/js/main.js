@@ -1,13 +1,13 @@
 
-let fragmento =""
+let fragmento = ""
 let divVacio = document.querySelector(".carroVacio")
 let divCarrito = document.querySelector(".articulosAniadidos")
 let c3 = 0
 let vacio = false
-let itemsEnCarro=[]
-let total=[]
+let itemsEnCarro = []
+let total = [0, 0]
 
-let bolsita=document.getElementById("articulosEnCarro")
+let bolsita = document.getElementById("articulosEnCarro")
 const items = [
   {
     id: 1,
@@ -58,11 +58,18 @@ let categoria = [
     cantidad: 2,
   }
 ]
-let descarga=JSON.parse(window.localStorage.getItem("arreglo"))
-if(descarga!==null){
-  itemsEnCarro=descarga
-  bolsita.textContent=itemsEnCarro.length
+let descarga = JSON.parse(window.localStorage.getItem("arreglo"))
+let descargaTotal = JSON.parse(window.localStorage.getItem("total"))
+if (descarga !== null) {
+  itemsEnCarro = descarga
+
 }
+if (descargaTotal !== null) {
+  bolsita.textContent = descargaTotal[0]
+
+}
+
+
 
 //porque tambien me imprime en el grande??
 
@@ -119,16 +126,16 @@ let carro = document.getElementById("carro")
 let divCarro = document.querySelector(".carroInactivo")
 
 carro.addEventListener("click", () => {
-  
+
   divCarro.classList.add("carrito")
   if (itemsEnCarro[0] !== undefined && vacio === false) {
     //desaparecer el div
     divVacio.classList.add("carroVacioNone")
     vacio = true
-    if(itemsEnCarro!==null){
+    if (itemsEnCarro !== null) {
       imprimirArray(itemsEnCarro)//??
     }
-    
+
   }
 })
 
@@ -142,66 +149,73 @@ x.addEventListener("click", () => {
 
 
 function carrito(id) {
-  console.log(items[id].name)
-  //crear el array
-  let aux = {
-    id: id,
-    idp: id,
-    name: items[id].name,
-    price: items[id].price,
-    image: items[id].image,
-    category: items[id].category,
-    quantity: items[id].quantity,
-    cantidad: 1,
-    stock: function (c, q) {
-      if (c > q) { window.alert("No se puede añadir mas") }
+  
+    console.log("paso por aqui")
+    console.log(items[id].name)
+    //crear el array
+    let aux = {
+      id: id,
+      idp: id,
+      name: items[id].name,
+      price: items[id].price,
+      image: items[id].image,
+      category: items[id].category,
+      quantity: items[id].quantity,
+      cantidad: 1,
     }
+    
+    itemsEnCarro.push(aux)
+    itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
+
+    //condicional para primer caso
+     //eliminar la imagen de carrito vacio
+          if (vacio === false) {
+            divVacio.classList.add("carroVacioNone")
+            vacio = true
+          }
+        
+          //imprimir el array
+          imprimirArray(itemsEnCarro)
+  
+  
+   
   }
-  itemsEnCarro.push(aux)
-  itemsEnCarro[itemsEnCarro.length - 1].id = itemsEnCarro.length - 1
+ 
+
+
+function clickMasMenos(id, boo) {
+  //modificar en el array la cantidad
+    if (boo === true) {
+      itemsEnCarro[id].cantidad++
+    } else { itemsEnCarro[id].cantidad-- }
+
+
+    //imprimir el array de nuevo
+    imprimirArray(itemsEnCarro)
   
 
-  //eliminar la imagen de carrito vacio
-  if (vacio === false) {
-    divVacio.classList.add("carroVacioNone")
-    vacio = true
-  }
-
-  //imprimir el array
-  imprimirArray(itemsEnCarro)
-
-}
-function clickMasMenos(id, boo) {
-  console.log(itemsEnCarro)
-
-  //modificar en el array la cantidad
-  if (boo === true) {
-    itemsEnCarro[id].cantidad++
-  } else { itemsEnCarro[id].cantidad-- }
 
 
-  //imprimir el array de nuevo
-  imprimirArray(itemsEnCarro)
 }
 function Eliminar(id) {
   //modificar e imprimir
-  let posItem=itemsEnCarro[id].idp
+  let posItem = itemsEnCarro[id].idp
   itemsEnCarro.splice(id, 1)
   //si se elimina, todos los id cambian
-  for(i=id;i<=itemsEnCarro.length-1;i++){
+  for (i = id; i <= itemsEnCarro.length - 1; i++) {
     itemsEnCarro[i].id--
   }
   imprimirArray(itemsEnCarro)
   //si el array esta vacio, imprimir que el carro esta vacio
-  if(itemsEnCarro[0]===undefined){
+  if (itemsEnCarro[0] === undefined) {
     divVacio.classList.remove("carroVacioNone")
-    vacio=false
+    vacio = false
   }
 }
 
 
 function imprimirArray(arreglo) {
-//Eliminar los repetidos
+  //Eliminar los repetidos
   let a = 0
   let pos = []
   for (i = 0; i <= arreglo.length - 1; i++) {
@@ -236,9 +250,30 @@ function imprimirArray(arreglo) {
     </div>`
   })
   divCarrito.innerHTML = fragmento
-//almacenar el array
-let subir=JSON.stringify(arreglo)
-window.localStorage.setItem("arreglo",subir)
+  //almacenar el array
+  let subir = JSON.stringify(arreglo)
+  window.localStorage.setItem("arreglo", subir)
 
-bolsita.textContent=itemsEnCarro.length
+
+  //crear el arreglo total
+  total[0] = 0
+  total[1] = 0
+  for (i = 0; i <= arreglo.length - 1; i++) {
+    total[0] = total[0] + arreglo[i].cantidad
+    total[1] = total[1] + arreglo[i].cantidad * arreglo[i].price
+  }
+
+  //imprimir el array
+  fragmento = ""
+  fragmento = `<span id="items">${total[0]} items</span><span id="precio">$${total[1]}</span>`
+  let divTotal = document.querySelector(".total")
+  divTotal.innerHTML = fragmento
+
+  //almacenar el array
+  window.localStorage.setItem("total", JSON.stringify(total))
+
+  bolsita.textContent = total[0]
+
+
+
 }

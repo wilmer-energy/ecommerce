@@ -350,6 +350,28 @@ flex-direction: column;
 justify-content: center;
 gap: 3vh;
 }
+.total{
+    width: 25vw;
+    position: absolute;
+    bottom: 2vh;
+    display: flex;
+    flex-direction: row;
+    padding: 1vw;
+    justify-content: space-between;
+}
+#items{
+font-size: 16px;
+color: var(--text-color);
+font-weight: bold;
+display: inline-block;
+margin-left: 3vw;
+}
+#precio{
+font-size: 20px;
+color: var(--button-color);
+font-weight: bold;
+display: inline-block;
+}
 
 
 /*FOOTER------------------------------------------*/
