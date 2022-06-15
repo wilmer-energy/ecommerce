@@ -190,6 +190,7 @@ list-style: none;
 .carroInactivo{
     display: none;
     width: 50vw;
+    overflow: scroll;
     
 }
 .carroInactivo>h2{
@@ -364,8 +365,7 @@ gap: 3vh;
 .total{
     width: 25vw;
     display: flex;
-    position: absolute;
-    bottom: 0;
+    
     flex-direction: row;
     padding: 1vw;
     justify-content: space-between;
@@ -417,6 +417,23 @@ margin-bottom: 10px;
     display: none;
 }
 .ulHamburger{
+    display: none;
+}
+.buy{
+    background-color: var(--button-color);
+    width: 130px;
+    height: 60px;
+    color: var(--container-color);
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 3vw;
+}
+.buy:hover{
+    background-color: var(--first-color);
+    cursor: pointer;
+}
+.buyVacio{
     display: none;
 }
 @media screen and (max-width:600px) {
@@ -477,6 +494,8 @@ input:checked~ul {
     margin: 0;
     padding: 0;
 }
-
+.carroInactivo{
+    width: 60vmax;
+}
 
 }

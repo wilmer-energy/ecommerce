@@ -18,7 +18,7 @@
             <li class="navUno"><a href="#contenido">Products</a></li>
         </ul>
         <ul class="imagenes">
-           
+
             <li class="hamburger">
                 <input type="checkbox" id="indicador">
                 <label for="indicador"> <img src="./assets/images/menu-button-of-three-horizontal-lines.png"
@@ -29,11 +29,11 @@
                 </ul>
             </li>
             <li><img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAUVJREFUSEu1leFVwkAQhL90oB3QgXagdmAHSAVCBWAFYgdQgXagdqAVWAJYAbx5by8vHnt3OUz2V0JuZ3b3ZoeGkaMZGZ9agoMV1Duv90EDHoxgBayBfTTCFMEF8Ag8xSP3OhD4EvgC7hySGEPg78C1ESi/DY9ACR/AlZfgiCIU9A3cxgWl7kAkcyBUc28jEIBCBbwAb/aeGmkvFW2AaULO+jbLSb2kIlX+CvxaNwJUPADP9qx7UkdulAiUeAMsTFVdEI1QJJ82+yJBkKAOBuLw26WjJt3TLlq8E4xuB7UEE+CnhsBrcdAReQThkvVNM9/aIW1tkPC/Lll4OZnKGv5sblxlbtG63qJO1IEUpZByBBzkWbVoWW/JWIXrXTmzc73FIch6V2pE59h117vaOkqbHBc82B9OylpGJ8gZZ9GLqpP7JBwBqodLGcS/O10AAAAASUVORK5CYII=" />
-        </li>
-        <li id="carro"><img src="./assets/images/shopping-bag.png" alt="">
-            <div id="articulosEnCarro"></div>
-        </li>
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAUVJREFUSEu1leFVwkAQhL90oB3QgXagdmAHSAVCBWAFYgdQgXagdqAVWAJYAbx5by8vHnt3OUz2V0JuZ3b3ZoeGkaMZGZ9agoMV1Duv90EDHoxgBayBfTTCFMEF8Ag8xSP3OhD4EvgC7hySGEPg78C1ESi/DY9ACR/AlZfgiCIU9A3cxgWl7kAkcyBUc28jEIBCBbwAb/aeGmkvFW2AaULO+jbLSb2kIlX+CvxaNwJUPADP9qx7UkdulAiUeAMsTFVdEI1QJJ82+yJBkKAOBuLw26WjJt3TLlq8E4xuB7UEE+CnhsBrcdAReQThkvVNM9/aIW1tkPC/Lll4OZnKGv5sblxlbtG63qJO1IEUpZByBBzkWbVoWW/JWIXrXTmzc73FIch6V2pE59h117vaOkqbHBc82B9OylpGJ8gZZ9GLqpP7JBwBqodLGcS/O10AAAAASUVORK5CYII=" />
+            </li>
+            <li id="carro"><img src="./assets/images/shopping-bag.png" alt="">
+                <div id="articulosEnCarro"></div>
+            </li>
 
         </ul>
     </nav>
@@ -53,6 +53,9 @@
     <div class="carroInactivo">
         <span id="x">x</span>
         <h2>My cart</h2>
+        <div class="total">
+        </div>
+        <button class="buy buyVacio" onclick="buy()">BUY NOW</button>
         <div class="carroVacio">
             <img id="imgVacio" src="./assets/images/empty-cart.png" alt="">
             <h2>Your cart is empty</h2>
@@ -62,9 +65,7 @@
         </div>
 
 
-        <div class="total">
 
-        </div>
 
     </div>
 

@@ -6,6 +6,7 @@ let c3 = 0
 let vacio = false
 let itemsEnCarro = []
 let total = [0, 0]
+let buyBtn=document.querySelector(".buy")
 
 let bolsita = document.getElementById("articulosEnCarro")
 const items = [
@@ -226,6 +227,7 @@ function Eliminar(id) {
   if (itemsEnCarro[0] === undefined) {
     divVacio.classList.remove("carroVacioNone")
     vacio = false
+    buyBtn.classList.add("buyVacio")
   }
 }
 
@@ -264,9 +266,12 @@ function imprimirArray(arreglo) {
 
   //imprimir el array
   fragmento = ""
-  fragmento = `<span id="items">${total[0]} items</span><span id="precio">$${total[1]}</span>`
+  fragmento = `
+  <button class="buy buyVacio" onclick="buy()">BUY NOW</button>
+  <span id="items">${total[0]} items</span><span id="precio">$${total[1]}</span>`
   let divTotal = document.querySelector(".total")
   divTotal.innerHTML = fragmento
+  buyBtn.classList.remove("buyVacio")
 
   //almacenar el array
   window.localStorage.setItem("total", JSON.stringify(total))
@@ -274,5 +279,17 @@ function imprimirArray(arreglo) {
   bolsita.textContent = total[0]
 
 
+buyBtn.classList.remove("buyVacio")
+}
+function buy(){
+  itemsEnCarro=[]
+  imprimirArray(itemsEnCarro)
+  window.alert("Thanks for buying us")
 
+  if (itemsEnCarro[0] === undefined) {
+    divVacio.classList.remove("carroVacioNone")
+    vacio = false
+  }
+  
+  buyBtn.classList.add("buyVacio")
 }
