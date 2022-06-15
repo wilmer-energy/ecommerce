@@ -111,12 +111,12 @@ function clickFilter(id) {
     return conn
   })
 
-  //Crear las tarjetas
+  //Crear las tarjetas  c2???
   fragmento = ""
   aux.forEach(element => {
     fragmento += `<div>
       <div class="imagen"><img src="${element.image}" alt=""></div>
-      <button>+</button><br><span class="texto-medio">$${element.price} </span><span class="texto-bajo">| Stock: ${element.quantity}</span><br><span class="texto-medio">${element.name}</span>
+      <button onclick="carrito(${element.id-1})" class="aniadir">+</button><br><span class="texto-medio">$${element.price} </span><span class="texto-bajo">| Stock: ${element.quantity}</span><br><span class="texto-medio">${element.name}</span>
   </div>`
   })
   divAniadir.innerHTML = fragmento
@@ -267,11 +267,9 @@ function imprimirArray(arreglo) {
   //imprimir el array
   fragmento = ""
   fragmento = `
-  <button class="buy buyVacio" onclick="buy()">BUY NOW</button>
   <span id="items">${total[0]} items</span><span id="precio">$${total[1]}</span>`
   let divTotal = document.querySelector(".total")
   divTotal.innerHTML = fragmento
-  buyBtn.classList.remove("buyVacio")
 
   //almacenar el array
   window.localStorage.setItem("total", JSON.stringify(total))
