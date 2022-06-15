@@ -407,3 +407,76 @@ color: var(--text-color-light);
 text-decoration: none;
 margin-bottom: 10px;
 }
+.hamburger img{
+    display: none;
+}
+.divHamburger{
+    display: none;
+}
+#indicador{
+    display: none;
+}
+.ulHamburger{
+    display: none;
+}
+@media screen and (max-width:600px) {
+    .hamburger img{
+        display: inline-block;
+        width: 20px;
+    }
+    .navUno{
+        display: none;
+    }
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+.imagenes{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.imagenesLeft a{
+    display: inline-block;
+    margin: 0;
+}
+.imagenesLeft{
+    margin-left: 0;
+    margin-right: 0;
+}
+.categoria{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+   
+}
+footer>ul{
+    margin-left: 8vw;
+}
+
+.ulHamburger{/*Sola mente aparecerlo cuando se haga click*/
+    display: none;
+}
+input:checked~ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+}
+.ulHamburger li,.ulHamburger a{
+    margin: 0;
+    padding: 0;
+}
+
+
+}

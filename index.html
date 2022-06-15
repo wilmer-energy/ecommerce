@@ -12,14 +12,29 @@
 
 <body>
     <nav>
-        <ul>
+        <ul class="imagenesLeft">
             <li><a href=""><img src="" alt="">STORE</a></li>
-            <li><a href="">Home</a></li>
-            <li><a href="#contenido">Products</a></li>
+            <li class="navUno"><a href="">Home</a></li>
+            <li class="navUno"><a href="#contenido">Products</a></li>
         </ul>
-        <ul>
-            <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAUVJREFUSEu1leFVwkAQhL90oB3QgXagdmAHSAVCBWAFYgdQgXagdqAVWAJYAbx5by8vHnt3OUz2V0JuZ3b3ZoeGkaMZGZ9agoMV1Duv90EDHoxgBayBfTTCFMEF8Ag8xSP3OhD4EvgC7hySGEPg78C1ESi/DY9ACR/AlZfgiCIU9A3cxgWl7kAkcyBUc28jEIBCBbwAb/aeGmkvFW2AaULO+jbLSb2kIlX+CvxaNwJUPADP9qx7UkdulAiUeAMsTFVdEI1QJJ82+yJBkKAOBuLw26WjJt3TLlq8E4xuB7UEE+CnhsBrcdAReQThkvVNM9/aIW1tkPC/Lll4OZnKGv5sblxlbtG63qJO1IEUpZByBBzkWbVoWW/JWIXrXTmzc73FIch6V2pE59h117vaOkqbHBc82B9OylpGJ8gZZ9GLqpP7JBwBqodLGcS/O10AAAAASUVORK5CYII="/></li>
-            <li id="carro"><img src="./assets/images/shopping-bag.png" alt=""><div id="articulosEnCarro"></div></li>
+        <ul class="imagenes">
+           
+            <li class="hamburger">
+                <input type="checkbox" id="indicador">
+                <label for="indicador"> <img src="./assets/images/menu-button-of-three-horizontal-lines.png"
+                        alt=""></label>
+                <ul class="ulHamburger">
+                    <li><a href="">Home</a></li>
+                    <li><a href="#contenido">Products</a></li>
+                </ul>
+            </li>
+            <li><img
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAUVJREFUSEu1leFVwkAQhL90oB3QgXagdmAHSAVCBWAFYgdQgXagdqAVWAJYAbx5by8vHnt3OUz2V0JuZ3b3ZoeGkaMZGZ9agoMV1Duv90EDHoxgBayBfTTCFMEF8Ag8xSP3OhD4EvgC7hySGEPg78C1ESi/DY9ACR/AlZfgiCIU9A3cxgWl7kAkcyBUc28jEIBCBbwAb/aeGmkvFW2AaULO+jbLSb2kIlX+CvxaNwJUPADP9qx7UkdulAiUeAMsTFVdEI1QJJ82+yJBkKAOBuLw26WjJt3TLlq8E4xuB7UEE+CnhsBrcdAReQThkvVNM9/aIW1tkPC/Lll4OZnKGv5sblxlbtG63qJO1IEUpZByBBzkWbVoWW/JWIXrXTmzc73FIch6V2pE59h117vaOkqbHBc82B9OylpGJ8gZZ9GLqpP7JBwBqodLGcS/O10AAAAASUVORK5CYII=" />
+        </li>
+        <li id="carro"><img src="./assets/images/shopping-bag.png" alt="">
+            <div id="articulosEnCarro"></div>
+        </li>
+
         </ul>
     </nav>
     <section class="Home">
@@ -27,11 +42,12 @@
         <div class="contenedorHome">
             <h1>New Sweatshirt<br>
                 COLLECTIONS 2022</h1>
-            <p>Latest arrival of the new Hanes Midweight Crewneck sweatshirt <br>imported from the 2022 series, with a modern design.</p>
+            <p>Latest arrival of the new Hanes Midweight Crewneck sweatshirt <br>imported from the 2022 series, with a
+                modern design.</p>
             <span>$14.00</span>
             <div><button class="btn1">Discover</button><button class="btn2">ADD TO CART</button></div>
         </div>
-        
+
     </section>
 
     <div class="carroInactivo">
@@ -44,10 +60,10 @@
         </div>
         <div class="articulosAniadidos">
         </div>
-        
+
 
         <div class="total">
-            
+
         </div>
 
     </div>
