@@ -495,7 +495,7 @@ input:checked~ul {
     padding: 0;
 }
 .carroInactivo{
-    width: 60vmax;
+    width: 90vw;
 }
 
 }
